@@ -832,198 +832,266 @@
             transform: translateY(-5px);
         }
 
-      @media (max-width: 768px) {
-  body {
-    font-size: 15px;
-    line-height: 1.5;
-  }
+       
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            padding: 15px 5%;
+            text-align: center;
+        }
+        
+        .logo-container {
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        
+        nav {
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        nav a {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+        
+        nav a.login-btn {
+            padding: 8px 16px;
+        }
+        
+        .container {
+            width: 90%;
+            top: 22%;
+            transform: translate(-50%, 0);
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-section {
+            height: auto;
+            padding: 100px 5% 60px;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            margin-top: 40px;
+        }
+        
+        .hero-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .btn-group {
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            width: 100%;
+            max-width: 250px;
+        }
+        
+        .stats-container {
+            flex-direction: column;
+            gap: 30px;
+            padding: 30px 20px;
+            border-radius: 15px;
+            margin: 30px 5%;
+            width: 90%;
+        }
+        
+        .stat-item {
+            padding: 0;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+        }
+        
+        .promo-section {
+            padding: 60px 5%;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .promo-text {
+            margin-bottom: 40px;
+            max-width: 100%;
+        }
+        
+        .promo-text h2 {
+            font-size: 1.8rem;
+            line-height: 1.3;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 15px;
+        }
+        
+        .promo-images {
+            margin-top: 20px;
+        }
+        
+        .features-section {
+            padding: 60px 5%;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            margin-bottom: 40px;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .feature-card {
+            padding: 30px 20px;
+        }
+        
+        .about-section {
+            padding: 60px 5%;
+        }
+        
+        .about-container {
+            flex-direction: column;
+        }
+        
+        .about-text {
+            padding-right: 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+        }
+        
+        .about-images {
+            margin-top: 60px;
+        }
+        
+        .circle-img {
+            width: 120px !important;
+            height: 120px !important;
+            top: -30px !important;
+            left: 10px !important;
+        }
+        
+        .founders {
+            margin-top: 60px;
+        }
+        
+        .founders h3 {
+            font-size: 1.8rem;
+        }
+        
+        .founder-list {
+            gap: 30px;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .founder {
+            width: 100%;
+            max-width: 250px;
+        }
+        
+        .footer {
+            padding: 60px 5% 30px;
+            border-top-left-radius: 40px;
+        }
+        
+        .footer-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .footer-col {
+            text-align: center;
+        }
+        
+        .footer-col h4::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .social-icons {
+            justify-content: center;
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+    }
 
-  header {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 15px;
-    text-align: center;
-  }
-
-  .logo-container {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .logo-container img {
-    height: 40px;
-  }
-
-  header h1 {
-    font-size: 22px;
-  }
-
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-
-  nav a {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  .container {
-    width: 90%;
-    top: 30%;
-    padding: 0 10px;
-  }
-
-  .hero-section {
-    flex-direction: column;
-    padding: 40px 5%;
-    height: auto;
-    text-align: center;
-  }
-
-  .hero-content {
-    text-align: center;
-  }
-
-  .hero-content h2 {
-    font-size: 2rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .btn-group {
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .stats-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    padding: 30px 10px;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-  }
-
-  .promo-section {
-    flex-direction: column;
-    padding: 50px 5%;
-    text-align: center;
-  }
-
-  .promo-text h2 {
-    font-size: 2rem;
-  }
-
-  .promo-text p {
-    font-size: 1rem;
-  }
-
-  .promo-images {
-    margin-top: 30px;
-  }
-
-  .promo-images img {
-    max-width: 100%;
-  }
-
-  .tagline {
-    font-size: 1.2rem;
-    margin-top: 20px;
-    padding: 15px;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .about-container {
-    flex-direction: column;
-    text-align: center;
-    padding: 0 5%;
-  }
-
-  .about-text {
-    padding-right: 0;
-  }
-
-  .about-images {
-    margin-top: 30px;
-  }
-
-  .about-images .circle-img {
-    width: 140px;
-    height: 140px;
-    top: -20px;
-    left: 0;
-  }
-
-  .about-images .main-img {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .founders {
-    padding: 0 20px;
-  }
-
-  .founder-list {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .footer {
-    padding: 50px 5% 20px;
-    border-top-left-radius: 30px;
-  }
-
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
-  }
-
-  .footer-col form {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-col input[type="email"] {
-    width: 100%;
-  }
-
-  .footer-col button {
-    font-size: 18px;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-
-  .scroll-to-top {
-    width: 40px;
-    height: 40px;
-    bottom: 20px;
-    right: 20px;
-    font-size: 18px;
-  }
-}
-
-
+    @media (max-width: 480px) {
+        header h1 {
+            font-size: 24px;
+        }
+        
+        header img {
+            height: 40px;
+        }
+        
+        .hero-content h2 {
+            font-size: 1.8rem;
+        }
+        
+        .hero-content p {
+            font-size: 1rem;
+        }
+        
+        .container {
+            top: 18%;
+        }
+        
+        .container form {
+            padding: 8px 15px;
+        }
+        
+        .container input[type="text"] {
+            font-size: 14px;
+            padding: 8px;
+        }
+        
+        .container button {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        .promo-text h2 {
+            font-size: 1.6rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .about-text h2 {
+            font-size: 1.8rem;
+        }
+        
+        .founders h3 {
+            font-size: 1.6rem;
+        }
+    }
     </style>
 </head>
 <body>
@@ -1212,7 +1280,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="use.html">Find Rides</a></li>
-        <li><a href="rider.html">Post a Ride</a></li>
+        <li><a href="ride.html">Post a Ride</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="careers.html">Careers</a></li>
       </ul>
