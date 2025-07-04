@@ -832,267 +832,162 @@
             transform: translateY(-5px);
         }
 
-      @media (max-width: 992px) {
-    /* General adjustments for tablets */
-    .hero-content h2 {
-        font-size: 2.2rem;
-    }
-    
-    .promo-section {
-        padding: 80px 5%;
-    }
-    
-    .promo-text, .promo-images {
-        flex: 1 1 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Header and Logo - Aligned to left */
+       @media (max-width: 768px) {
     header {
-        flex-direction: row;
-        padding: 12px 5%;
-        justify-content: flex-start;
-        align-items: center;
-        flex-wrap: nowrap;
+        flex-direction: column;
+        padding: 15px;
+        position: relative;
     }
     
     .logo-container {
-        margin-right: auto;
-        width: auto;
-        justify-content: flex-start;
+        margin-bottom: 15px;
+        justify-content: center;
     }
     
-    header h1 {
-        font-size: 1.5rem;
-    }
-    
-    header img {
-        height: 36px;
-    }
-    
-    /* Navigation - Right aligned */
     nav {
-        margin-left: auto;
-        width: auto;
-        gap: 8px;
-    }
-    
-    nav a {
-        padding: 6px 10px;
-        font-size: 0.8rem;
-    }
-    
-    nav a.login-btn {
-        padding: 8px 12px;
-    }
-
-    /* Search Container */
-    .container {
-        width: 90%;
-        top: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .container form {
-        padding: 8px 15px;
-    }
-    
-    .container input[type="text"] {
-        width: 65%;
-        padding: 10px;
-    }
-    
-    .container button {
-        padding: 10px 15px;
-    }
-
-    /* Create Ride Section */
-    .ride-creation-section {
-        padding: 40px 5%;
-        flex-direction: column;
-    }
-    
-    .ride-form-container {
         width: 100%;
-        padding: 20px;
-    }
-    
-    .ride-map-container {
-        width: 100%;
-        height: 300px;
-        margin-top: 20px;
-    }
-    
-    /* About Ride Section */
-    .about-ride-section {
-        padding: 40px 5%;
-    }
-    
-    .ride-features {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    /* Promo Section */
-    .promo-section {
-        flex-direction: column-reverse;
-        padding: 60px 5%;
-    }
-    
-    .promo-text {
-        margin-top: 30px;
-        text-align: center;
-    }
-    
-    .promo-images {
-        margin-bottom: 0;
-    }
-    
-    /* Map Styling */
-    .map-container {
-        height: 250px;
-        margin: 20px 0;
-    }
-    
-    .map-controls {
-        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
         gap: 10px;
     }
     
-    /* Stats */
-    .stats-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    /* Small mobile adjustments */
-    header {
-        padding: 10px 4%;
-    }
-    
-    .logo-container {
-        gap: 6px;
-    }
-    
-    header h1 {
-        font-size: 1.3rem;
-    }
-    
-    header img {
-        height: 32px;
-    }
-    
-    nav {
-        gap: 5px;
-    }
-    
     nav a {
-        padding: 5px 8px;
-        font-size: 0.7rem;
+        padding: 6px 10px;
+        font-size: 14px;
     }
     
     nav a.login-btn {
-        padding: 6px 10px;
+        padding: 8px 15px;
     }
     
-    /* Search Container */
     .container {
-        top: 90px;
+        width: 90%;
+        top: auto;
+        position: relative;
+        transform: none;
+        left: auto;
+        margin: 20px auto;
     }
     
-    .container input[type="text"] {
-        width: 60%;
-        padding: 8px;
-        font-size: 0.9rem;
+    .hero-section {
+        height: auto;
+        padding: 100px 20px 60px;
+        text-align: center;
     }
     
-    .container button {
-        padding: 8px 12px;
-        font-size: 0.9rem;
+    .hero-content {
+        margin: 0 auto;
     }
     
-    /* Create Ride Section */
-    .ride-form-container {
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px 20px;
+        border-radius: 10px;
+        margin: 20px 10px;
+    }
+    
+    .promo-section {
+        padding: 60px 20px;
+        flex-direction: column;
+    }
+    
+    .promo-text {
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+        margin: 20px 0;
         padding: 15px;
     }
     
-    .form-group {
-        margin-bottom: 15px;
+    .about-container {
+        flex-direction: column;
+        padding: 0 20px;
     }
     
-    /* About Ride Section */
-    .about-ride-section h2 {
-        font-size: 1.8rem;
+    .about-text {
+        padding-right: 0;
+        margin-bottom: 40px;
+        text-align: center;
     }
     
-    /* Stats */
-    .stats-container {
+    .about-images {
+        margin-top: 60px;
+    }
+    
+    .about-images .circle-img {
+        width: 120px;
+        height: 120px;
+        top: -30px;
+        left: 10px;
+    }
+    
+    .founders {
+        margin-top: 60px;
+        padding: 0 20px;
+    }
+    
+    .founder-list {
+        gap: 30px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .founder-img-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .features-section {
+        padding: 60px 20px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .features-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
-    .stat-item {
-        padding: 10px;
+    .feature-card {
+        padding: 30px 20px;
     }
     
-    /* Map Styling */
-    .map-container {
-        height: 200px;
+    .footer {
+        padding: 60px 20px 30px;
+        border-top-left-radius: 40px;
     }
     
-    /* Footer */
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
     .footer-col {
         text-align: center;
     }
     
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
     .social-icons {
         justify-content: center;
-    }
-}
-
-@media (max-width: 400px) {
-    /* Extra small devices */
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .logo-container {
-        margin-bottom: 10px;
-    }
-    
-    nav {
-        width: 100%;
-        justify-content: space-between;
-        margin-left: 0;
-    }
-    
-    /* Search Container */
-    .container {
-        top: 150px;
-    }
-    
-    .container form {
-        flex-direction: column;
-        gap: 10px;
-        padding: 15px;
-    }
-    
-    .container input[type="text"] {
-        width: 100%;
-    }
-    
-    .container button {
-        width: 100%;
-    }
-    
-    /* Hero Section */
-    .hero-content h2 {
-        font-size: 1.5rem;
     }
 }
     </style>
