@@ -834,160 +834,74 @@
 
        
    @media (max-width: 768px) {
-        /* Header adjustments */
+        /* Header adjustments - make room for search */
         header {
-            flex-direction: column;
-            padding: 15px 5%;
-            text-align: center;
+            padding-top: 80px; /* Make space for search bar */
             position: relative;
         }
         
-        .logo-container {
-            margin-bottom: 15px;
-            justify-content: center;
-            width: 100%;
-        }
-        
-        header h1 {
-            font-size: 24px;
-        }
-        
-        /* Navigation adjustments */
-        nav {
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        
-        nav a {
-            padding: 6px 12px;
-            font-size: 13px;
-        }
-        
-        nav a.login-btn {
-            padding: 8px 16px;
-            order: 1; /* Ensure login button stays visible */
-        }
-        
-        /* Hero section adjustments */
-        .hero-section {
-            height: auto;
-            padding: 120px 5% 80px; /* More padding at top for search */
-            text-align: center;
-            flex-direction: column;
-            justify-content: flex-start; /* Align to top */
-        }
-        
-        .hero-content {
-            margin-top: 20px;
-        }
-        
-        .hero-content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-        
-        .hero-content p {
-            font-size: 1rem;
-            padding: 0 10px;
-        }
-        
-        /* Search container adjustments */
+        /* Search container - position at very top */
         .container {
             width: 90%;
-            top: 100px; /* Position below header */
-            transform: translate(-50%, 0);
-            position: absolute;
-            margin-top: 0;
-            margin-bottom: 0;
+            top: 15px; /* Position at very top */
+            left: 50%;
+            transform: translateX(-50%);
+            position: fixed; /* Make it stay at top when scrolling */
+            z-index: 1001;
+            margin: 0;
         }
         
         .container form {
             padding: 8px 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .container input[type="text"] {
-            font-size: 14px;
-            padding: 8px;
+        /* Adjust header logo/nav to account for search */
+        .logo-container {
+            margin-bottom: 10px;
         }
         
-        .container button {
-            padding: 8px 16px;
-            font-size: 14px;
+        /* Hero section - push down to account for fixed search */
+        .hero-section {
+            padding-top: 160px; /* Space for header + search */
         }
         
-        /* Button group adjustments */
-        .btn-group {
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-            margin-top: 20px;
+        /* Make sure content starts below search */
+        .hero-content {
+            margin-top: 0;
         }
         
-        .btn {
-            width: 100%;
-            max-width: 250px;
-            padding: 12px 20px;
-        }
-        
-        /* Stats container adjustments */
-        .stats-container {
-            margin-top: 60px; /* Give space after search */
-        }
-        
-        /* ... (keep the rest of your existing mobile styles) ... */
+        /* ... (keep the rest of your mobile styles) ... */
     }
 
     @media (max-width: 480px) {
         /* Further adjustments for very small screens */
-        header h1 {
-            font-size: 22px;
-        }
-        
-        header img {
-            height: 35px;
-        }
-        
-        .hero-content h2 {
-            font-size: 1.6rem;
-            margin-top: 30px; /* Ensure space after search */
+        header {
+            padding-top: 70px;
         }
         
         .container {
-            top: 90px;
+            top: 10px;
+            width: 95%;
         }
         
         .container form {
-            flex-direction: column;
-            border-radius: 25px;
-            padding: 5px;
-            background: transparent;
-            border: none;
-            box-shadow: none;
+            padding: 6px 12px;
         }
         
+        .hero-section {
+            padding-top: 150px;
+        }
+        
+        /* Make search more compact */
         .container input[type="text"] {
-            background: white;
-            border-radius: 25px;
-            margin-bottom: 5px;
-            border: 1px solid #ffdd00;
-            text-align: center;
+            padding: 8px;
+            font-size: 13px;
         }
         
         .container button {
-            width: 100%;
-        }
-        
-        nav a {
-            font-size: 12px;
-            padding: 5px 10px;
-        }
-        
-        .hero-content p {
-            font-size: 0.95rem;
+            padding: 8px 12px;
+            font-size: 13px;
         }
     }
     </style>
