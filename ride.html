@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ride Sharing Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --secondary: #3f37c9;
+      --success: #4cc9f0;
+      --danger: #f72585;
+      --warning: #f8961e;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+    }
+    
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+    
+    h2 {
+      font-size: 24px;
+      font-weight: 500;
+    }
+    
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    
+    label {
+      display: block;
+      margin: 15px 0 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    .input-group {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.3s;
+      background-color: white;
+    }
+    
+    input:focus, select:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    .form-section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .profile-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 20px auto;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    
+    .profile-wrapper:hover {
+      transform: scale(1.05);
+    }
+    
+    .profile-pic {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+    }
+    
+    .upload-label {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: var(--primary);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 3px solid white;
+      transition: all 0.3s;
+    }
+    
+    .upload-label:hover {
+      background: var(--secondary);
+      transform: scale(1.1);
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+    }
+    
+    .btn-secondary {
+      background: var(--gray);
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+    
+    .btn-link {
+      background: none;
+      border: none;
+      color: var(--primary);
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+      margin-top: 10px;
+      font-size: 14px;
+      width: auto;
+    
+    }
+    
+    .btn-link:hover {
+      color: var(--secondary);
+    }
+    
+    /* Success Page Styles */
+    #success-page {
+      display: none;
+      text-align: center;
+      padding: 30px;
+    }
+    
+    .success-icon {
+      font-size: 80px;
+      color: var(--success);
+      margin-bottom: 20px;
+      animation: bounce 1s;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
+    }
+    
+    #success-message {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    /* Vehicle Cards */
+    .vehicle-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+      justify-content: center;
+    }
+    
+    .vehicle-card {
+      width: 120px;
+      padding: 15px;
+      border-radius: 12px;
+      background: white;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid var(--light-gray);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .vehicle-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      border-color: var(--primary-light);
+    }
+    
+    .vehicle-card.selected {
+      border-color: var(--primary);
+      background: rgba(67, 97, 238, 0.05);
+    }
+    
+    .vehicle-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .vehicle-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    /* Progress Steps */
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .progress-steps::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--light-gray);
+      z-index: 1;
+    }
+    
+    .progress-bar {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      height: 3px;
+      background: var(--primary);
+      z-index: 2;
+      transition: width 0.3s;
+    }
+    
+    .step {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+    }
+    
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 5px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .step.active .step-number {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .step.completed .step-number {
+      background: var(--success);
+      color: white;
+    }
+    
+    .step-label {
+      font-size: 12px;
+      color: var(--gray);
+    }
+    
+    .step.active .step-label {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    /* Alert Messages */
+    .alert {
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-size: 14px;
+      display: none;
+    }
+    
+    .alert-success {
+      background: rgba(76, 201, 240, 0.1);
+      border-left: 4px solid var(--success);
+      color: var(--dark);
+    }
+    
+    .alert-danger {
+      background: rgba(247, 37, 133, 0.1);
+      border-left: 4px solid var(--danger);
+      color: var(--dark);
+    }
+    
+    /* File Upload Preview */
+    .file-preview-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .file-preview {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid var(--light-gray);
+      transition: all 0.3s;
+    }
+    
+    .file-preview:hover {
+      transform: scale(1.05);
+      border-color: var(--primary);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+      
+      .vehicle-cards {
+        gap: 10px;
+      }
+      
+      .vehicle-card {
+        width: 100px;
+        padding: 10px;
+      }
+      
+      .vehicle-icon {
+        font-size: 30px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      
+      .container {
+        padding: 15px;
+      }
+      
+      .profile-wrapper {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .vehicle-card {
+        width: 80px;
+      }
+      
+      .btn {
+        padding: 10px 15px;
+        font-size: 15px;
+      }
+    }
+    
+    /* Animation for form sections */
+    .form-section.active {
+      display: block;
+    }
+    
+    /* Info Tooltip */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 5px;
+      color: var(--gray);
+      cursor: help;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 12px;
+      font-weight: normal;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="main-form">
+  <!-- Vehicle Selector -->
+  <div id="vehicle-selector">
+    <h2>Share Your Ride</h2>
+    <p style="text-align: center; color: var(--gray); margin-bottom: 20px;">
+      Select your vehicle type to start sharing your ride with others
+    </p>
+    
+    <div class="vehicle-cards">
+      <div class="vehicle-card" onclick="selectVehicle('bike')" data-vehicle="bike">
+        <div class="vehicle-icon">
+          <i class="fas fa-motorcycle"></i>
+        </div>
+        <div class="vehicle-name">Bike</div>
+      </div>
+      
+      <div class="vehicle-card" onclick="selectVehicle('car')" data-vehicle="car">
+        <div class="vehicle-icon">
+          <i class="fas fa-car"></i>
+        </div>
+        <div class="vehicle-name">Car</div>
+      </div>
+      
+      <div class="vehicle-card" onclick="selectVehicle('auto')" data-vehicle="auto">
+        <div class="vehicle-icon">
+          <i class="fas fa-rickshaw"></i>
+        </div>
+        <div class="vehicle-name">Auto</div>
+      </div>
+      
+      <div class="vehicle-card" onclick="selectVehicle('bus')" data-vehicle="bus">
+        <div class="vehicle-icon">
+          <i class="fas fa-bus"></i>
+        </div>
+        <div class="vehicle-name">Bus</div>
+      </div>
+    </div>
+    
+    <div class="alert alert-danger" id="vehicle-alert"></div>
+    
+    <button class="btn btn-primary" onclick="showPinSection()">Continue</button>
+    <button class="btn btn-secondary" onclick="showDeleteSection()">Manage Existing Ride</button>
+   
+  </div>
+
+  <!-- PIN Section -->
+  <div id="pin-section" class="form-section">
+    <div class="progress-steps">
+      <div class="step active">
+        <div class="step-number">1</div>
+        <div class="step-label">Vehicle</div>
+      </div>
+      <div class="step active">
+        <div class="step-number">2</div>
+        <div class="step-label">Security</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-label">Details</div>
+      </div>
+    </div>
+    
+    <h2>Create Your Secure PIN</h2>
+    <p style="text-align: center; color: var(--gray); margin-bottom: 20px;">
+      This 4-digit PIN will be used to verify your identity when managing your ride.
+    </p>
+    
+    <label for="user-pin">Create PIN <span class="tooltip">🔒<span class="tooltiptext">Don't share your PIN with anyone</span></span></label>
+    <input type="password" id="user-pin" pattern="\d{4}" minlength="4" maxlength="4" required placeholder="Enter 4-digit PIN">
+    
+    <label for="confirm-pin">Confirm PIN</label>
+    <input type="password" id="confirm-pin" pattern="\d{4}" minlength="4" maxlength="4" required placeholder="Re-enter your PIN">
+    
+    <div class="alert alert-danger" id="pin-alert"></div>
+    
+    <button class="btn btn-primary" onclick="verifyPinAndShowForm()">Continue</button>
+    <button class="btn btn-secondary" onclick="showVehicleSelector()">Back</button>
+  </div>
+
+  <!-- Bike Form -->
+  <form class="form-section" id="bike-form" onsubmit="submitForm(event, 'bike')">
+    <div class="progress-steps">
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Vehicle</div>
+      </div>
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Security</div>
+      </div>
+      <div class="step active">
+        <div class="step-number">3</div>
+        <div class="step-label">Details</div>
+      </div>
+    </div>
+    
+    <h2>Bike Ride Details</h2>
+    
+    <div class="profile-wrapper">
+      <img src="https://via.placeholder.com/120" id="bike-preview" class="profile-pic" onclick="document.getElementById('bike-user-photo').click()" />
+      <input type="file" id="bike-user-photo" onchange="previewImage(event, 'bike-preview')" accept="image/*" style="display: none;" />
+      <label class="upload-label" for="bike-user-photo">
+        <i class="fas fa-camera"></i>
+      </label>
+    </div>
+    <p style="text-align: center; font-size: 12px; color: var(--gray); margin-top: -10px;">Click to upload profile picture</p>
+
+    <div class="input-group">
+      <label for="bike-name">Your Full Name</label>
+      <input type="text" id="bike-name" required placeholder="Enter your name as per Aadhaar">
+    </div>
+
+    <div class="input-group">
+      <label for="bike-mobile">Mobile Number</label>
+      <input type="tel" id="bike-mobile" required placeholder="Enter 10-digit mobile number">
+    </div>
+
+    <div class="input-group">
+      <label for="bike-email">Email Address</label>
+      <input type="email" id="bike-email" required placeholder="Enter your email address">
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Bike Information</h3>
+
+    <div class="input-group">
+      <label for="bike-vehicle-name">Bike Model</label>
+      <input type="text" id="bike-vehicle-name" required placeholder="e.g., Bajaj Pulsar 150">
+    </div>
+
+    <div class="input-group">
+      <label for="bike-vehicle-number">Bike Registration Number</label>
+      <input type="text" id="bike-vehicle-number" required placeholder="e.g., MH01AB1234">
+    </div>
+
+    <div class="input-group">
+      <label for="bike-date">Available Date</label>
+      <input type="date" id="bike-date" required>
+    </div>
+
+    <div class="input-group">
+      <label for="bike-time">Available Time</label>
+      <input type="time" id="bike-time" required>
+    </div>
+
+    <div class="input-group">
+      <label for="bike-location-from">Starting Location</label>
+      <input type="text" id="bike-location-from" required placeholder="Where will you start from?">
+    </div>
+
+    <div class="input-group">
+      <label for="bike-location-to">Destination</label>
+      <input type="text" id="bike-location-to" required placeholder="Where are you going?">
+    </div>
+
+    <div class="input-group">
+      <label for="bike-photos">Upload Bike Photos (At least 4 clear pictures)</label>
+      <input type="file" id="bike-photos" multiple required onchange="previewFiles(event, 'bike-photos-preview')">
+      <div class="file-preview-container" id="bike-photos-preview"></div>
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Identity Verification</h3>
+
+    <div class="input-group">
+      <label for="bike-aadhaar">Aadhaar Number</label>
+      <input type="text" id="bike-aadhaar" required placeholder="Enter 12-digit Aadhaar number">
+    </div>
+
+    <div class="input-group">
+      <label for="bike-aadhaar-photo">Upload Aadhaar Card (Front side)</label>
+      <input type="file" id="bike-aadhaar-photo" required onchange="previewFiles(event, 'bike-aadhaar-preview', true)">
+      <div class="file-preview-container" id="bike-aadhaar-preview"></div>
+    </div>
+
+    <div class="alert alert-danger" id="bike-alert"></div>
+    
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-paper-plane"></i> Submit Ride Details
+    </button>
+    <button type="button" class="btn btn-secondary" onclick="showVehicleSelector()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+  </form>
+
+  <!-- Car Form -->
+  <form class="form-section" id="car-form" onsubmit="submitForm(event, 'car')">
+    <div class="progress-steps">
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Vehicle</div>
+      </div>
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Security</div>
+      </div>
+      <div class="step active">
+        <div class="step-number">3</div>
+        <div class="step-label">Details</div>
+      </div>
+    </div>
+    
+    <h2>Car Ride Details</h2>
+    
+    <div class="profile-wrapper">
+      <img src="https://via.placeholder.com/120" id="car-preview" class="profile-pic" onclick="document.getElementById('car-user-photo').click()" />
+      <input type="file" id="car-user-photo" onchange="previewImage(event, 'car-preview')" accept="image/*" style="display: none;" />
+      <label class="upload-label" for="car-user-photo">
+        <i class="fas fa-camera"></i>
+      </label>
+    </div>
+    <p style="text-align: center; font-size: 12px; color: var(--gray); margin-top: -10px;">Click to upload profile picture</p>
+
+    <div class="input-group">
+      <label for="car-name">Your Full Name</label>
+      <input type="text" id="car-name" required placeholder="Enter your name as per Aadhaar">
+    </div>
+
+    <div class="input-group">
+      <label for="car-mobile">Mobile Number</label>
+      <input type="tel" id="car-mobile" required placeholder="Enter 10-digit mobile number">
+    </div>
+
+    <div class="input-group">
+      <label for="car-email">Email Address</label>
+      <input type="email" id="car-email" required placeholder="Enter your email address">
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Car Information</h3>
+
+    <div class="input-group">
+      <label for="car-vehicle-name">Car Model</label>
+      <input type="text" id="car-vehicle-name" required placeholder="e.g., Hyundai Creta">
+    </div>
+
+    <div class="input-group">
+      <label for="car-vehicle-number">Car Registration Number</label>
+      <input type="text" id="car-vehicle-number" required placeholder="e.g., MH01AB1234">
+    </div>
+
+    <div class="input-group">
+      <label for="car-date">Available Date</label>
+      <input type="date" id="car-date" required>
+    </div>
+
+    <div class="input-group">
+      <label for="car-time">Available Time</label>
+      <input type="time" id="car-time" required>
+    </div>
+
+    <div class="input-group">
+      <label for="car-location-from">Starting Location</label>
+      <input type="text" id="car-location-from" required placeholder="Where will you start from?">
+    </div>
+
+    <div class="input-group">
+      <label for="car-location-to">Destination</label>
+      <input type="text" id="car-location-to" required placeholder="Where are you going?">
+    </div>
+
+    <div class="input-group">
+      <label for="car-photos">Upload Car Photos (At least 4 clear pictures)</label>
+      <input type="file" id="car-photos" multiple required onchange="previewFiles(event, 'car-photos-preview')">
+      <div class="file-preview-container" id="car-photos-preview"></div>
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Identity Verification</h3>
+
+    <div class="input-group">
+      <label for="car-aadhaar">Aadhaar Number</label>
+      <input type="text" id="car-aadhaar" required placeholder="Enter 12-digit Aadhaar number">
+    </div>
+
+    <div class="input-group">
+      <label for="car-aadhaar-photo">Upload Aadhaar Card (Front side)</label>
+      <input type="file" id="car-aadhaar-photo" required onchange="previewFiles(event, 'car-aadhaar-preview', true)">
+      <div class="file-preview-container" id="car-aadhaar-preview"></div>
+    </div>
+
+    <div class="alert alert-danger" id="car-alert"></div>
+    
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-paper-plane"></i> Submit Ride Details
+    </button>
+    <button type="button" class="btn btn-secondary" onclick="showVehicleSelector()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+  </form>
+
+  <!-- Auto Form -->
+  <form class="form-section" id="auto-form" onsubmit="submitForm(event, 'auto')">
+    <div class="progress-steps">
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Vehicle</div>
+      </div>
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Security</div>
+      </div>
+      <div class="step active">
+        <div class="step-number">3</div>
+        <div class="step-label">Details</div>
+      </div>
+    </div>
+    
+    <h2>Auto Ride Details</h2>
+    
+    <div class="profile-wrapper">
+      <img src="https://via.placeholder.com/120" id="auto-preview" class="profile-pic" onclick="document.getElementById('auto-user-photo').click()" />
+      <input type="file" id="auto-user-photo" onchange="previewImage(event, 'auto-preview')" accept="image/*" style="display: none;" />
+      <label class="upload-label" for="auto-user-photo">
+        <i class="fas fa-camera"></i>
+      </label>
+    </div>
+    <p style="text-align: center; font-size: 12px; color: var(--gray); margin-top: -10px;">Click to upload profile picture</p>
+
+    <div class="input-group">
+      <label for="auto-name">Your Full Name</label>
+      <input type="text" id="auto-name" required placeholder="Enter your name as per Aadhaar">
+    </div>
+
+    <div class="input-group">
+      <label for="auto-mobile">Mobile Number</label>
+      <input type="tel" id="auto-mobile" required placeholder="Enter 10-digit mobile number">
+    </div>
+
+    <div class="input-group">
+      <label for="auto-email">Email Address</label>
+      <input type="email" id="auto-email" required placeholder="Enter your email address">
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Auto Information</h3>
+
+    <div class="input-group">
+      <label for="auto-vehicle-name">Auto Model</label>
+      <input type="text" id="auto-vehicle-name" required placeholder="e.g., Bajaj RE">
+    </div>
+
+    <div class="input-group">
+      <label for="auto-vehicle-number">Auto Registration Number</label>
+      <input type="text" id="auto-vehicle-number" required placeholder="e.g., MH01AB1234">
+    </div>
+
+    <div class="input-group">
+      <label for="auto-date">Available Date</label>
+      <input type="date" id="auto-date" required>
+    </div>
+
+    <div class="input-group">
+      <label for="auto-time">Available Time</label>
+      <input type="time" id="auto-time" required>
+    </div>
+
+    <div class="input-group">
+      <label for="auto-location-from">Starting Location</label>
+      <input type="text" id="auto-location-from" required placeholder="Where will you start from?">
+    </div>
+
+    <div class="input-group">
+      <label for="auto-location-to">Destination</label>
+      <input type="text" id="auto-location-to" required placeholder="Where are you going?">
+    </div>
+
+    <div class="input-group">
+      <label for="auto-photos">Upload Auto Photos (At least 4 clear pictures)</label>
+      <input type="file" id="auto-photos" multiple required onchange="previewFiles(event, 'auto-photos-preview')">
+      <div class="file-preview-container" id="auto-photos-preview"></div>
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Identity Verification</h3>
+
+    <div class="input-group">
+      <label for="auto-aadhaar">Aadhaar Number</label>
+      <input type="text" id="auto-aadhaar" required placeholder="Enter 12-digit Aadhaar number">
+    </div>
+
+    <div class="input-group">
+      <label for="auto-aadhaar-photo">Upload Aadhaar Card (Front side)</label>
+      <input type="file" id="auto-aadhaar-photo" required onchange="previewFiles(event, 'auto-aadhaar-preview', true)">
+      <div class="file-preview-container" id="auto-aadhaar-preview"></div>
+    </div>
+
+    <div class="alert alert-danger" id="auto-alert"></div>
+    
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-paper-plane"></i> Submit Ride Details
+    </button>
+    <button type="button" class="btn btn-secondary" onclick="showVehicleSelector()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+  </form>
+
+  <!-- Bus Form -->
+  <form class="form-section" id="bus-form" onsubmit="submitForm(event, 'bus')">
+    <div class="progress-steps">
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Vehicle</div>
+      </div>
+      <div class="step completed">
+        <div class="step-number"><i class="fas fa-check"></i></div>
+        <div class="step-label">Security</div>
+      </div>
+      <div class="step active">
+        <div class="step-number">3</div>
+        <div class="step-label">Details</div>
+      </div>
+    </div>
+    
+    <h2>Bus Ride Details</h2>
+    
+    <div class="profile-wrapper">
+      <img src="https://via.placeholder.com/120" id="bus-preview" class="profile-pic" onclick="document.getElementById('bus-user-photo').click()" />
+      <input type="file" id="bus-user-photo" onchange="previewImage(event, 'bus-preview')" accept="image/*" style="display: none;" />
+      <label class="upload-label" for="bus-user-photo">
+        <i class="fas fa-camera"></i>
+      </label>
+    </div>
+    <p style="text-align: center; font-size: 12px; color: var(--gray); margin-top: -10px;">Click to upload profile picture</p>
+
+    <div class="input-group">
+      <label for="bus-name">Your Full Name</label>
+      <input type="text" id="bus-name" required placeholder="Enter your name as per Aadhaar">
+    </div>
+
+    <div class="input-group">
+      <label for="bus-mobile">Mobile Number</label>
+      <input type="tel" id="bus-mobile" required placeholder="Enter 10-digit mobile number">
+    </div>
+
+    <div class="input-group">
+      <label for="bus-email">Email Address</label>
+      <input type="email" id="bus-email" required placeholder="Enter your email address">
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Bus Information</h3>
+
+    <div class="input-group">
+      <label for="bus-vehicle-name">Bus Model</label>
+      <input type="text" id="bus-vehicle-name" required placeholder="e.g., Volvo AC">
+    </div>
+
+    <div class="input-group">
+      <label for="bus-vehicle-number">Bus Registration Number</label>
+      <input type="text" id="bus-vehicle-number" required placeholder="e.g., MH01AB1234">
+    </div>
+
+    <div class="input-group">
+      <label for="bus-date">Available Date</label>
+      <input type="date" id="bus-date" required>
+    </div>
+
+    <div class="input-group">
+      <label for="bus-time">Available Time</label>
+      <input type="time" id="bus-time" required>
+    </div>
+
+    <div class="input-group">
+      <label for="bus-location-from">Starting Location</label>
+      <input type="text" id="bus-location-from" required placeholder="Where will you start from?">
+    </div>
+
+    <div class="input-group">
+      <label for="bus-location-to">Destination</label>
+      <input type="text" id="bus-location-to" required placeholder="Where are you going?">
+    </div>
+
+    <div class="input-group">
+      <label for="bus-photos">Upload Bus Photos (At least 4 clear pictures)</label>
+      <input type="file" id="bus-photos" multiple required onchange="previewFiles(event, 'bus-photos-preview')">
+      <div class="file-preview-container" id="bus-photos-preview"></div>
+    </div>
+
+    <h3 style="text-align: left; margin-top: 30px;">Identity Verification</h3>
+
+    <div class="input-group">
+      <label for="bus-aadhaar">Aadhaar Number</label>
+      <input type="text" id="bus-aadhaar" required placeholder="Enter 12-digit Aadhaar number">
+    </div>
+
+    <div class="input-group">
+      <label for="bus-aadhaar-photo">Upload Aadhaar Card (Front side)</label>
+      <input type="file" id="bus-aadhaar-photo" required onchange="previewFiles(event, 'bus-aadhaar-preview', true)">
+      <div class="file-preview-container" id="bus-aadhaar-preview"></div>
+    </div>
+
+    <div class="alert alert-danger" id="bus-alert"></div>
+    
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-paper-plane"></i> Submit Ride Details
+    </button>
+    <button type="button" class="btn btn-secondary" onclick="showVehicleSelector()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+  </form>
+</div>
+
+<!-- Success Page -->
+<div class="container" id="success-page" style="display: none;">
+  <div class="success-icon">
+    <i class="fas fa-check-circle"></i>
+  </div>
+  <h2>Successfully Submitted!</h2>
+  <p id="success-message"></p>
+  <button class="btn btn-primary" onclick="showVehicleSelector()">
+    <i class="fas fa-plus"></i> Submit Another Ride
+  </button>
+  <button class="btn btn-secondary" onclick="window.location.href='user.html'">
+    <i class="fas fa-list"></i> View All Rides
+  </button>
+</div>
+
+<!-- Delete Ride Section -->
+<div class="container" id="delete-ride-section" style="display: none;">
+  <h2>Manage Your Ride</h2>
+  <p style="text-align: center; color: var(--gray); margin-bottom: 20px;">
+    Enter your Ride ID and PIN to delete or modify your ride
+  </p>
+  
+  <div class="input-group">
+    <label for="delete-ride-id">Ride ID</label>
+    <input type="text" id="delete-ride-id" required placeholder="Enter your Ride ID">
+  </div>
+  
+  <div class="input-group">
+    <label for="delete-ride-pin">4-digit PIN</label>
+    <input type="password" id="delete-ride-pin" pattern="\d{4}" minlength="4" maxlength="4" required placeholder="Enter your 4-digit PIN">
+  </div>
+  
+  <div class="alert alert-danger" id="delete-alert"></div>
+  <div class="alert alert-success" id="delete-success"></div>
+  
+  <button class="btn btn-primary" onclick="deleteRide()">
+    <i class="fas fa-trash-alt"></i> Delete Ride
+  </button>
+  <button class="btn btn-secondary" onclick="showVehicleSelector()">
+    <i class="fas fa-arrow-left"></i> Back to Main
+  </button>
+  <button type="button" class="btn-link" onclick="showRecoverSection()">
+    <i class="fas fa-question-circle"></i> Forgot your Ride ID?
+  </button>
+</div>
+
+<!-- Recover ID Section -->
+<div class="container" id="recover-id-section" style="display: none;">
+  <h2>Recover Your Ride ID</h2>
+  <p style="text-align: center; color: var(--gray); margin-bottom: 20px;">
+    Enter your registered email address to receive your Ride ID
+  </p>
+  
+  <div class="input-group">
+    <label for="recover-email">Email Address</label>
+    <input type="email" id="recover-email" required placeholder="Enter your registered email">
+  </div>
+  
+  <div class="alert alert-danger" id="recover-alert"></div>
+  <div class="alert alert-success" id="recover-success"></div>
+  
+  <button class="btn btn-primary" onclick="recoverRideId()">
+    <i class="fas fa-paper-plane"></i> Send Ride ID
+  </button>
+  <button class="btn btn-secondary" onclick="showVehicleSelector()">
+    <i class="fas fa-arrow-left"></i> Back to Main
+  </button>
+</div>
+
+<script>
+  // Store all submitted entries
+  let vehicleEntries = [];
+  let currentPin = "";
+  let currentVehicleType = "";
+  
+  // Load saved entries from localStorage when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    const savedEntries = localStorage.getItem('vehicleEntries');
+    if (savedEntries) {
+      vehicleEntries = JSON.parse(savedEntries);
+    }
+    
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelectorAll('input[type="date"]').forEach(input => {
+      input.min = today;
+    });
+  });
+
+  function selectVehicle(type) {
+    currentVehicleType = type;
+    document.querySelectorAll('.vehicle-card').forEach(card => {
+      card.classList.remove('selected');
+    });
+    document.querySelector(`.vehicle-card[data-vehicle="${type}"]`).classList.add('selected');
+    document.getElementById('vehicle-alert').style.display = 'none';
+  }
+
+  function showPinSection() {
+    if (!currentVehicleType) {
+      document.getElementById('vehicle-alert').textContent = 'Please select a vehicle type';
+      document.getElementById('vehicle-alert').style.display = 'block';
+      return;
+    }
+    
+    document.getElementById("vehicle-selector").style.display = "none";
+    document.getElementById("delete-ride-section").style.display = "none";
+    document.getElementById("recover-id-section").style.display = "none";
+    document.getElementById("pin-section").style.display = "block";
+    
+    // Update progress bar
+    document.querySelector('.progress-bar').style.width = '33%';
+  }
+
+  function verifyPinAndShowForm() {
+    const pin = document.getElementById("user-pin").value;
+    const confirmPin = document.getElementById("confirm-pin").value;
+    const pinAlert = document.getElementById("pin-alert");
+    
+    if (!pin || !confirmPin) {
+      pinAlert.textContent = "Please enter and confirm your PIN";
+      pinAlert.style.display = "block";
+      return;
+    }
+    
+    if (pin.length !== 4 || confirmPin.length !== 4) {
+      pinAlert.textContent = "PIN must be exactly 4 digits";
+      pinAlert.style.display = "block";
+      return;
+    }
+    
+    if (pin !== confirmPin) {
+      pinAlert.textContent = "PINs do not match. Please try again.";
+      pinAlert.style.display = "block";
+      return;
+    }
+    
+    currentPin = pin;
+    document.getElementById("pin-section").style.display = "none";
+    document.getElementById(currentVehicleType + "-form").style.display = "block";
+    
+    // Update progress bar
+    document.querySelector('.progress-bar').style.width = '66%';
+  }
+
+  function showVehicleSelector() {
+    document.getElementById("success-page").style.display = "none";
+    document.querySelectorAll(".form-section").forEach(f => f.style.display = "none");
+    document.getElementById("delete-ride-section").style.display = "none";
+    document.getElementById("recover-id-section").style.display = "none";
+    document.getElementById("pin-section").style.display = "none";
+    document.getElementById("vehicle-selector").style.display = "block";
+    document.getElementById("main-form").style.display = "block";
+    
+    // Reset PIN inputs
+    document.getElementById("user-pin").value = "";
+    document.getElementById("confirm-pin").value = "";
+    currentPin = "";
+    currentVehicleType = "";
+    
+    // Reset selected vehicle
+    document.querySelectorAll('.vehicle-card').forEach(card => {
+      card.classList.remove('selected');
+    });
+  }
+
+  function showDeleteSection() {
+    document.getElementById("vehicle-selector").style.display = "none";
+    document.querySelectorAll(".form-section").forEach(f => f.style.display = "none");
+    document.getElementById("recover-id-section").style.display = "none";
+    document.getElementById("pin-section").style.display = "none";
+    document.getElementById("delete-ride-section").style.display = "block";
+    document.getElementById("main-form").style.display = "block";
+    
+    // Clear previous messages
+    document.getElementById("delete-alert").style.display = "none";
+    document.getElementById("delete-success").style.display = "none";
+  }
+
+  function showRecoverSection() {
+    document.getElementById("vehicle-selector").style.display = "none";
+    document.querySelectorAll(".form-section").forEach(f => f.style.display = "none");
+    document.getElementById("delete-ride-section").style.display = "none";
+    document.getElementById("pin-section").style.display = "none";
+    document.getElementById("recover-id-section").style.display = "block";
+    document.getElementById("main-form").style.display = "block";
+    
+    // Clear previous messages
+    document.getElementById("recover-alert").style.display = "none";
+    document.getElementById("recover-success").style.display = "none";
+  }
+
+  function previewImage(event, previewId) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById(previewId).src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
+  function previewFiles(event, previewContainerId, single = false) {
+    const files = event.target.files;
+    const previewContainer = document.getElementById(previewContainerId);
+    previewContainer.innerHTML = '';
+    
+    if (files.length > 0) {
+      for (let i = 0; i < (single ? 1 : files.length); i++) {
+        const file = files[i];
+        if (file.type.match('image.*')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const preview = document.createElement('img');
+            preview.className = 'file-preview';
+            preview.src = e.target.result;
+            previewContainer.appendChild(preview);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    }
+  }
+  
+  async function submitForm(event, type) {
+    event.preventDefault();
+
+    const formAlert = document.getElementById(`${type}-alert`);
+    formAlert.style.display = 'none';
+    
+    const profilePhotoInput = document.getElementById(`${type}-user-photo`);
+    const vehiclePhotosInput = document.getElementById(`${type}-photos`);
+    const aadhaarPhotoInput = document.getElementById(`${type}-aadhaar-photo`);
+
+    // Basic validation
+    if (!aadhaarPhotoInput.files[0]) {
+      formAlert.textContent = "Aadhaar photo is required!";
+      formAlert.style.display = "block";
+      return;
+    }
+
+    if (vehiclePhotosInput.files.length < 4) {
+      formAlert.textContent = "Please upload at least 4 photos of your vehicle";
+      formAlert.style.display = "block";
+      return;
+    }
+
+    const validTypes = ["image/jpeg", "image/png", "image/webp"];
+    const files = [...(vehiclePhotosInput.files || []), aadhaarPhotoInput.files[0]];
+
+    for (const file of files) {
+      if (file && !validTypes.includes(file.type)) {
+        formAlert.textContent = "Only JPG, PNG, or WebP images are allowed!";
+        formAlert.style.display = "block";
+        return;
+      }
+      
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        formAlert.textContent = "Image files should be less than 5MB each";
+        formAlert.style.display = "block";
+        return;
+      }
+    }
+
+    try {
+      // Show loading state
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      submitBtn.disabled = true;
+
+      const profilePhoto = profilePhotoInput.files[0]
+        ? await compressImage(profilePhotoInput.files[0])
+        : "https://via.placeholder.com/120";
+
+      const aadhaarPhoto = await compressImage(aadhaarPhotoInput.files[0]);
+
+      const vehiclePhotos = vehiclePhotosInput.files.length > 0
+        ? await Promise.all(Array.from(vehiclePhotosInput.files).map(compressImage))
+        : Array(4).fill().map((_, i) => `https://via.placeholder.com/300x200?text=Vehicle+${i+1}`);
+
+      const formData = {
+        id: Date.now(),
+        type,
+        profilePhoto,
+        name: document.getElementById(`${type}-name`).value,
+        mobile: document.getElementById(`${type}-mobile`).value,
+        email: document.getElementById(`${type}-email`).value,
+        vehicleName: document.getElementById(`${type}-vehicle-name`).value,
+        vehicleNumber: document.getElementById(`${type}-vehicle-number`).value,
+        date: document.getElementById(`${type}-date`).value,
+        time: document.getElementById(`${type}-time`).value,
+        locationFrom: document.getElementById(`${type}-location-from`).value,
+        locationTo: document.getElementById(`${type}-location-to`).value,
+        aadhaarNumber: document.getElementById(`${type}-aadhaar`).value,
+        aadhaarPhoto,
+        photos: vehiclePhotos,
+        pin: currentPin,
+        submittedAt: new Date().toLocaleString(),
+        bookings: []
+      };
+      
+      // Store in local storage (limit to 10 entries)
+      if (vehicleEntries.length >= 10) vehicleEntries.pop();
+      vehicleEntries.unshift(formData);
+      localStorage.setItem("vehicleEntries", JSON.stringify(vehicleEntries));
+
+      // Show success page
+      document.getElementById("main-form").style.display = "none";
+      document.getElementById("success-page").style.display = "block";
+      document.getElementById("success-message").innerHTML = `
+        Your ride has been successfully submitted!<br><br>
+        <strong>Ride ID:</strong> ${formData.id}<br>
+        <strong>Vehicle Type:</strong> ${type.charAt(0).toUpperCase() + type.slice(1)}<br><br>
+        Please keep your Ride ID and PIN safe as you'll need them to manage your ride later.<br>
+        We've also sent these details to your email address.
+      `;
+      
+      // Simulate sending email (in a real app, this would be a server call)
+      simulateEmailSend(formData.email, formData.id, formData.pin);
+      
+      // Reset form
+      event.target.reset();
+      document.getElementById(`${type}-preview`).src = 'https://via.placeholder.com/120';
+      document.getElementById(`${type}-photos-preview`).innerHTML = '';
+      document.getElementById(`${type}-aadhaar-preview`).innerHTML = '';
+      
+      // Reset button state
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+    } catch (error) {
+      console.error("Error:", error);
+      formAlert.textContent = "Failed to process images. Please try smaller files or different formats.";
+      formAlert.style.display = "block";
+      
+      // Reset button state
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Ride Details';
+      submitBtn.disabled = false;
+    }
+  }
+
+  function deleteRide() {
+    const rideId = parseInt(document.getElementById("delete-ride-id").value);
+    const pin = document.getElementById("delete-ride-pin").value;
+    const deleteAlert = document.getElementById("delete-alert");
+    const deleteSuccess = document.getElementById("delete-success");
+    
+    deleteAlert.style.display = "none";
+    deleteSuccess.style.display = "none";
+    
+    if (!rideId || !pin) {
+      deleteAlert.textContent = "Please enter both Ride ID and PIN";
+      deleteAlert.style.display = "block";
+      return;
+    }
+    
+    const savedEntries = JSON.parse(localStorage.getItem('vehicleEntries') || '[]');
+    const index = savedEntries.findIndex(entry => entry.id === rideId);
+    
+    if (index === -1) {
+      deleteAlert.textContent = "No ride found with this ID";
+      deleteAlert.style.display = "block";
+      return;
+    }
+    
+    if (savedEntries[index].pin !== pin) {
+      deleteAlert.textContent = "Incorrect PIN. Please try again.";
+      deleteAlert.style.display = "block";
+      return;
+    }
+    
+    savedEntries.splice(index, 1);
+    localStorage.setItem('vehicleEntries', JSON.stringify(savedEntries));
+    
+    deleteSuccess.textContent = "Ride successfully deleted!";
+    deleteSuccess.style.display = "block";
+    
+    // Clear inputs
+    document.getElementById("delete-ride-id").value = "";
+    document.getElementById("delete-ride-pin").value = "";
+  }
+
+  function recoverRideId() {
+    const email = document.getElementById("recover-email").value.trim();
+    const recoverAlert = document.getElementById("recover-alert");
+    const recoverSuccess = document.getElementById("recover-success");
+    
+    recoverAlert.style.display = "none";
+    recoverSuccess.style.display = "none";
+    
+    if (!email) {
+      recoverAlert.textContent = "Please enter your email address";
+      recoverAlert.style.display = "block";
+      return;
+    }
+    
+    // Simple email validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      recoverAlert.textContent = "Please enter a valid email address";
+      recoverAlert.style.display = "block";
+      return;
+    }
+    
+    const savedEntries = JSON.parse(localStorage.getItem('vehicleEntries') || '[]');
+    const rides = savedEntries.filter(entry => entry.email === email);
+    
+    if (rides.length === 0) {
+      recoverAlert.textContent = "No rides found with this email address";
+      recoverAlert.style.display = "block";
+      return;
+    }
+    
+    // Simulate sending email with ride IDs (in a real app, this would be a server call)
+    simulateEmailRecovery(email, rides);
+    
+    recoverSuccess.innerHTML = `
+      We've sent your Ride ID(s) to <strong>${email}</strong>.<br>
+      Please check your inbox (and spam folder if you don't see it).
+    `;
+    recoverSuccess.style.display = "block";
+    document.getElementById("recover-email").value = "";
+  }
+
+  // Simulate email sending (for demo purposes)
+  function simulateEmailSend(email, rideId, pin) {
+    console.log(`Email sent to ${email} with Ride ID: ${rideId} and PIN: ${pin}`);
+    // In a real app, you would make an API call to your backend to send the email
+  }
+
+  // Simulate email recovery (for demo purposes)
+  function simulateEmailRecovery(email, rides) {
+    const rideList = rides.map(r => `Ride ID: ${r.id} (${r.type})`).join('\n');
+    console.log(`Email sent to ${email} with the following rides:\n${rideList}`);
+    // In a real app, you would make an API call to your backend to send the email
+  }
+
+  function compressImage(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const MAX_WIDTH = 800;
+          const MAX_HEIGHT = 800;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL("image/jpeg", 0.7));
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+</script>
+</body>
+</html>
