@@ -833,56 +833,81 @@
         }
 
        @media (max-width: 768px) {
+    /* Header and Navigation */
     header {
-        flex-direction: column;
-        padding: 15px 20px;
-        text-align: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 12px 5%;
+        align-items: center;
+        justify-content: space-between;
     }
     
     .logo-container {
-        margin-bottom: 15px;
-        justify-content: center;
+        margin-bottom: 0;
+        gap: 8px;
+        width: 60%;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+    
+    header img {
+        height: 36px;
     }
     
     nav {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
+        width: 40%;
+        justify-content: flex-end;
+        gap: 6px;
     }
     
     nav a {
-        padding: 8px 15px;
-        font-size: 14px;
+        padding: 6px 8px;
+        font-size: 0.75rem;
+        border-radius: 15px;
     }
     
     nav a.login-btn {
-        padding: 8px 15px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        background-color: #1a1a1a;
+        color: white;
     }
-    
+
+    /* Search Container */
     .container {
-        width: 90%;
-        top: 18%;
-        margin-top: 20px;
+        width: 92%;
+        top: 110px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0;
     }
     
     .container form {
-        padding: 8px 15px;
+        padding: 6px 10px;
+        border-radius: 30px;
     }
     
     .container input[type="text"] {
-        padding: 10px;
-        font-size: 14px;
+        padding: 10px 8px;
+        font-size: 0.9rem;
+        width: 65%;
+        min-width: 120px;
     }
     
     .container button {
-        padding: 10px 15px;
-        font-size: 14px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        white-space: nowrap;
     }
-    
+
+    /* Hero Section */
     .hero-section {
+        padding: 100px 5% 60px;
         height: auto;
-        padding: 120px 20px 80px;
+        min-height: 420px;
         text-align: center;
     }
     
@@ -891,187 +916,107 @@
     }
     
     .hero-content h2 {
-        font-size: 2rem;
-        margin-bottom: 15px;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
     
     .hero-content p {
         font-size: 1rem;
-        margin-bottom: 25px;
+        margin-bottom: 1.5rem;
     }
     
     .btn-group {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         align-items: center;
     }
     
     .btn {
         width: 100%;
-        max-width: 250px;
+        max-width: 220px;
         padding: 12px 20px;
     }
-    
+
+    /* Stats Container */
     .stats-container {
-        flex-direction: column;
-        gap: 30px;
-        padding: 30px 20px;
-        margin: 30px 20px;
-        border-radius: 15px;
-    }
-    
-    .stat-item {
-        padding: 0;
-    }
-    
-    .stat-number {
-        font-size: 2.5rem;
-    }
-    
-    .promo-section {
-        padding: 60px 20px;
-        flex-direction: column;
-    }
-    
-    .promo-text {
-        margin-bottom: 40px;
-        text-align: center;
-    }
-    
-    .promo-text h2 {
-        font-size: 1.8rem;
-    }
-    
-    .tagline {
-        font-size: 1.2rem;
-        margin: 20px 0;
-        padding: 15px;
-    }
-    
-    .about-container {
-        flex-direction: column;
-        padding: 0 20px;
-    }
-    
-    .about-text {
-        padding-right: 0;
-        margin-bottom: 40px;
-        text-align: center;
-    }
-    
-    .about-text h2 {
-        font-size: 2rem;
-    }
-    
-    .about-images {
-        margin-top: 20px;
-    }
-    
-    .about-images .circle-img {
-        width: 120px;
-        height: 120px;
-        top: -20px;
-        left: 10px;
-    }
-    
-    .features-section {
-        padding: 60px 20px;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-        margin-bottom: 40px;
-        padding: 0 10px;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .feature-card {
-        padding: 30px 20px;
-    }
-    
-    .founders {
-        margin-top: 60px;
-        padding: 0 20px;
-    }
-    
-    .founders h3 {
-        font-size: 1.8rem;
-    }
-    
-    .founder-list {
-        gap: 30px;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .footer {
-        padding: 60px 20px 30px;
-        border-top-left-radius: 40px;
-    }
-    
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .footer-col {
-        text-align: center;
-    }
-    
-    .footer-col h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .social-icons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        margin: 20px 5%;
         justify-content: center;
     }
     
-    .footer-bottom {
-        padding-top: 30px;
-        margin-top: 30px;
-    }
-    
-    .scroll-to-top {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-        bottom: 20px;
-        right: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h2 {
-        font-size: 1.8rem;
-    }
-    
-    .promo-text h2 {
-        font-size: 1.6rem;
-    }
-    
-    .about-text h2 {
-        font-size: 1.8rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .founders h3 {
-        font-size: 1.6rem;
+    .stat-item {
+        padding: 0 10px;
+        min-width: 45%;
     }
     
     .stat-number {
         font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    /* Rest of your mobile styles... */
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px 4%;
+    }
+    
+    .logo-container {
+        width: 70%;
+    }
+    
+    header h1 {
+        font-size: 1.3rem;
+    }
+    
+    nav {
+        width: 30%;
+        gap: 4px;
+    }
+    
+    nav a {
+        padding: 5px 6px;
+        font-size: 0.7rem;
+    }
+    
+    nav a.login-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+    
+    .container {
+        top: 100px;
+        width: 94%;
+    }
+    
+    .container input[type="text"] {
+        width: 60%;
+        font-size: 0.8rem;
+        padding: 8px 6px;
+    }
+    
+    .container button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .hero-section {
+        min-height: 380px;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .stat-item {
+        min-width: 100%;
     }
 }
     </style>
